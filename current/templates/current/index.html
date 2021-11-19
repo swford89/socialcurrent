@@ -1,7 +1,68 @@
 {% extends 'registration/base.html' %}
 
 {% block content %}
-    
-    <!-- content here -->
-
+<br>
+<!-- create main container -->
+<div class='container-fluid'>
+    <!-- display currency prices -->
+    {% if crypto_price_dict %}
+        <!-- create carousel slide -->
+        <div class='carousel slide' data-bs-ride='carousel' data-wrap='true'>
+            <!-- create inner carousel -->
+            <div class='carousel-inner'>
+                <!-- iterate through price dict -->
+                {% for key, value in crypto_price_dict.items %}
+                                
+                    <!-- active carousel item -->    
+                    <div class='carousel-item {% if forloop.first %} active {% endif %}' id='slide{{ forloop.counter }}'>
+                        <!-- start display content -->
+                        <div class='content d-block'>
+                            <!-- create content rows -->
+                            <div class='row g-3 mb-3'>
+                                <!-- create content columns -->
+                                <div class='col-md-6 col-xxl-3'>
+                                    <!-- create individual price card -->
+                                    <div class='card h-md-100 ecommerce-card-min-width'>
+                                        <!-- header for individual card -->
+                                        <div class='card-header pb-0'>
+                                            <!-- crypto currency name from dict -->
+                                            <h6 class='mb-0 mt-2 d-flex align items center'>
+                                                {{ key }}
+                                                <br>
+                                            </h6>
+                                        <!-- end header for individual card -->
+                                        </div>
+                                        <!-- card body content -->
+                                        <div class='card-body d-flex flex-column justify-content-end'>
+                                            <!-- card body content in column for price -->
+                                            <div class='col'>
+                                                <!-- cryptocurrency price from dict -->
+                                                <p class='font-san-serif 1h-1 mb-1 fs-4'>
+                                                    CAD ${{ value|floatformat:2 }}
+                                                </p>
+                                            <!-- end card body content in column -->
+                                            </div>
+                                        <!-- end card body content -->
+                                        </div>
+                                    <!-- end card -->
+                                    </div>
+                                <!-- end content columns -->
+                                </div>
+                            <!-- end content row -->
+                            </div>
+                        <!-- end display content -->
+                        </div>
+                    <!-- end active carousel item content -->
+                    </div>
+                <!-- end loop iterating through price dict-->
+                {% endfor %}
+            <!-- end inner carousel -->
+            </div>
+        <!-- end carousel slide -->
+        </div>
+    <!-- endif crypto price dict -->
+    {% endif %}
+   
+<!-- end main container -->
+</div>
 {% endblock content %}
