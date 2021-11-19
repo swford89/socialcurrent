@@ -4,7 +4,8 @@
 <br>
 <!-- create main container -->
 <div class='container-fluid'>
-    <!-- display currency prices -->
+
+    <!-- evaluate currency prices dict -->
     {% if crypto_price_dict %}
         <!-- create carousel slide -->
         <div class='carousel slide' data-bs-ride='carousel' data-wrap='true'>
@@ -12,7 +13,6 @@
             <div class='carousel-inner'>
                 <!-- iterate through price dict -->
                 {% for key, value in crypto_price_dict.items %}
-                                
                     <!-- active carousel item -->    
                     <div class='carousel-item {% if forloop.first %} active {% endif %}' id='slide{{ forloop.counter }}'>
                         <!-- start display content -->
@@ -54,7 +54,7 @@
                         </div>
                     <!-- end active carousel item content -->
                     </div>
-                <!-- end loop iterating through price dict-->
+                <!-- end forloop iterating through price dict-->
                 {% endfor %}
             <!-- end inner carousel -->
             </div>
@@ -63,6 +63,29 @@
     <!-- endif crypto price dict -->
     {% endif %}
    
+    <!-- evaluate the crypto tweets dict -->
+    {% if crypto_tweet_id_dict %}
+        <!-- create carousel slide -->
+        <div class='carousel slide' data-bs-ride='carousel' data-wrap='true'>
+            <!-- create inner carousel -->
+            <div class='carousel-inner'>
+                <!-- iterate through crypto_tweets_id_dict -->
+                {% for value in crypto_tweet_id_dict.values %}
+                    <!-- activate carousel item -->
+                    <div class='carousel-item {% if forloop.first %} active {% endif %}' id='slide{{ forloop.counter }}'>
+                        <p>
+                            {{ value|safe }}
+                        </p>
+                    <!-- end activate carousel item -->
+                    </div>
+                <!-- end forloop iterating through crypto_tweets_id_dict -->
+                {% endfor %}         
+            <!-- end carousel-inner -->
+            </div>
+        <!-- end create carousel -->
+        </div>
+    {% endif %}    
+
 <!-- end main container -->
 </div>
 {% endblock content %}
